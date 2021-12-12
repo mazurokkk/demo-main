@@ -1,17 +1,17 @@
-package alla.verkhohliadova.demo_car.controller;
+package oleh.mazurok.demo_car.controller;
 
 //import alla.verkhohliadova.demo_car.service.OrderService;
 
-import alla.verkhohliadova.demo_car.dto.request.OrderedRequest;
-import alla.verkhohliadova.demo_car.dto.response.OrderedResponse;
-import alla.verkhohliadova.demo_car.entity.Ordered;
-import alla.verkhohliadova.demo_car.security.JwtTokenTool;
-import alla.verkhohliadova.demo_car.service.OrderService;
-import alla.verkhohliadova.demo_car.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import oleh.mazurok.demo_car.dto.request.OrderedRequest;
+import oleh.mazurok.demo_car.dto.response.OrderedResponse;
+import oleh.mazurok.demo_car.entity.Ordered;
+import oleh.mazurok.demo_car.security.JwtTokenTool;
+import oleh.mazurok.demo_car.service.OrderService;
+import oleh.mazurok.demo_car.service.UserService;
+import oleh.mazurok.beans.factory.annotation.Autowired;
+import oleh.mazurok.web.bind.annotation.GetMapping;
+import oleh.mazurok.web.bind.annotation.PathVariable;
+import oleh.mazurok.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
