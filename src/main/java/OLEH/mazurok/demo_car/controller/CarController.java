@@ -1,4 +1,4 @@
-package alla.verkhohliadova.demo_car.controller;
+package oleh.mazurok.demo_car.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
