@@ -1,9 +1,9 @@
-package alla.verkhohliadova.demo_car.controller;
+package oleh.mazurok.demo_car.controller;
 
-import alla.verkhohliadova.demo_car.dto.request.ProductRequest;
-import alla.verkhohliadova.demo_car.dto.response.ProductResponse;
-import alla.verkhohliadova.demo_car.service.CategoryService;
-import alla.verkhohliadova.demo_car.service.ProductService;
+import oleh.mazurok.demo_car.dto.request.ProductRequest;
+import oleh.mazurok.demo_car.dto.response.ProductResponse;
+import oleh.mazurok.demo_car.service.CategoryService;
+import oleh.mazurok.demo_car.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
