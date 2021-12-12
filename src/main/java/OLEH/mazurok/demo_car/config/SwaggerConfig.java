@@ -1,4 +1,4 @@
-package alla.verkhohliadova.demo_car.config;
+package oleh.mazurok.demo_car.config;
 
 import com.google.common.collect.Sets;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +19,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .groupName("SpringBoot-Swagger-API")
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("alla.verkhohliadova.demo_car.controller"))
+                .apis(RequestHandlerSelectors.basePackage("oleh.mazurok.demo_car.controller"))
                 .build()
                 .consumes(Sets.newHashSet(MediaType.APPLICATION_JSON_VALUE))
                 .produces(Sets.newHashSet(MediaType.APPLICATION_JSON_VALUE))
