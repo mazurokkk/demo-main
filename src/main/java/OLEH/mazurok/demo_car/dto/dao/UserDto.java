@@ -1,6 +1,6 @@
-package alla.verkhohliadova.demo_car.dto.dao;
+package oleh.mazurok.demo_car.dto.dao;
 
-import alla.verkhohliadova.demo_car.entity.User;
+import oleh.mazurok.demo_car.entity.User;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
