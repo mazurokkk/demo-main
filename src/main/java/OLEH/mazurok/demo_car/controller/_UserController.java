@@ -1,16 +1,13 @@
-package alla.verkhohliadova.demo_car.controller;
+package oleh.mazurok.demo_car.controller;
 
-import alla.verkhohliadova.demo_car.dto.request.UserRequest;
-import alla.verkhohliadova.demo_car.dto.response.CategoryResponse;
-import alla.verkhohliadova.demo_car.dto.response.ProductResponse;
-import alla.verkhohliadova.demo_car.entity.Product;
-import alla.verkhohliadova.demo_car.entity.User;
-import alla.verkhohliadova.demo_car.entity.UserRole;
-import alla.verkhohliadova.demo_car.repository.UserRepository;
-import alla.verkhohliadova.demo_car.security.JwtTokenTool;
-import alla.verkhohliadova.demo_car.service.CategoryService;
-import alla.verkhohliadova.demo_car.service.ProductService;
-import alla.verkhohliadova.demo_car.service.UserService;
+import oleh.mazurok.demo_car.dto.request.UserRequest;
+import oleh.mazurok.demo_car.dto.response.CategoryResponse;
+import oleh.mazurok.demo_car.entity.Product;
+import oleh.mazurok.demo_car.entity.UserRole;
+import oleh.mazurok.demo_car.security.JwtTokenTool;
+import oleh.mazurok.demo_car.service.CategoryService;
+import oleh.mazurok.demo_car.service.ProductService;
+import oleh.mazurok.demo_car.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
