@@ -1,9 +1,9 @@
-package alla.verkhohliadova.demo_car.controller;
+package oleh.mazurok.demo_car.controller;
 
-import alla.verkhohliadova.demo_car.dto.response.ProductResponse;
-import alla.verkhohliadova.demo_car.security.JwtTokenTool;
-import alla.verkhohliadova.demo_car.service.FavoriteService;
-import alla.verkhohliadova.demo_car.service.UserService;
+import oleh.mazurok.demo_car.dto.response.ProductResponse;
+import oleh.mazurok.demo_car.security.JwtTokenTool;
+import oleh.mazurok.demo_car.service.FavoriteService;
+import oleh.mazurok.demo_car.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
