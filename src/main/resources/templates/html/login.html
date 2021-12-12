@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Вхід</title>
+    <style>
+        body{
+            background-color: rgb(25,25,25);
+            height: 100%;
+        }
+
+        h1{
+            text-align:center;
+            line-height:1.875em;
+            color: aliceblue;
+            font-size: 45px;
+        }
+
+        .table{
+            text-align:center;
+            line-height:1.875em;
+            color: aliceblue;
+            font-size: 25px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 35%;
+            left: 50%;
+            padding: 5px;
+        }
+
+        td{
+            text-align: right;
+            padding: 8px;
+            font-size: 18px;
+        }
+
+        .td_input{
+            text-align: center;
+        }
+
+        .td_button{
+            text-align: left;
+            padding-left: 15%;
+        }
+
+        .comp2{
+            margin-left: calc((100% - 980px) * 0.5);
+            text-align:center;
+            line-height:1.875em;
+            color: black;
+            font-size: 25px;
+            data-packed:"true";
+            data-vertical-text:"false";
+            left: 20px;
+            width: 940px;
+            position: absolute;
+        }
+
+        .rfield{
+            font-size: 15px;
+        }
+
+        input{
+            border: 4px solid rgb(25,25,25);
+        }
+
+        input:focus{
+            border-color: darkred;
+        }
+        button {
+            target: "_self";
+            data-keep-roots: "true";
+            data-anchor-comp-id: "";
+            data-anchor: "dataItem-ius9m6yf";
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            background-color: rgb(25, 25, 25);
+            color: aliceblue;
+            font-size: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        #message{
+            position: absolute;
+            left: 50%;
+            /*top: 10%;*/
+            transform: translate(-50%, -50%);
+            /*border: 5px solid #FFFF00;*/
+            padding: 10px;
+            font-size: 20px;
+            color: #4a864a;
+        }
+
+        #error{
+            position: absolute;
+            left: 50%;
+            /*top: 10%;*/
+            transform: translate(-50%, -50%);
+            /*border: 5px solid #FFFF00;*/
+            padding: 10px;
+            font-size: 20px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Вхід</h1>
+<form name = "person" action = "/users/in" method="post">
+    <table class="table">
+        <tr>
+            <td><span id="message" th:text="${message}">message</span></td>
+            <td><span id="error" th:text="${error}"></span></td>
+        </tr>
+        <tr>
+            <td>Логін:</td>
+            <td class="td_input"><input class="rfield" name="username" type="text" required></td>
+        </tr>
+        <tr>
+            <td>Пароль:</td>
+            <td class="td_input"><input class="rfield" type="password" name="password" required></td>
+        </tr>
+        <tr>
+            <td style="visibility: hidden">hidden</td>
+            <td class="td_button">
+                <button type="submit">Вхід</button>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

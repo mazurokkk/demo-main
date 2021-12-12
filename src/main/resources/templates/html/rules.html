@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Умови прокату</title>
+    <style>
+        body {
+            background-color: rgb(25, 25, 25);
+            color: aliceblue;
+        }
+
+        #div_menu {
+            position: absolute;
+            left: 50%;
+            top: 10%;
+            transform: translate(-50%, -50%);
+            border-bottom: 5px solid aliceblue; /*#FFFF00;*/
+            padding: 10px;
+            width: 90%;
+            margin: auto;
+            display: block;
+            align-items: center;
+            text-align: center;
+        }
+
+        .products-clearfix {
+            /*align-content: center;
+            position: absolute;
+            margin: auto;
+            left: 25%;
+            right: 25%;
+            width: 100%;
+            top: 65%;
+            transform: translate(-25%, -75%);
+            padding: 10px;*/
+            position: absolute;
+            /*margin: auto;*/
+            width: 90%;
+            left: 35%;
+            transform: translate(-25%, -125%);
+        }
+
+        .product-wrapper {
+            /*display: inline-table;
+            !*padding: 10px;*!
+            width: 25%;
+            float: none;
+            transition: width .2s;
+            !*align-items: center;*!*/
+            display: inline-block;
+            width: 25%;
+            float: left;
+            transition: width .2s;
+        }
+
+        button {
+            target: "_self";
+            data-keep-roots: "true";
+            data-anchor-comp-id: "";
+            data-anchor: "dataItem-ius9m6yf";
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            background-color: rgb(25, 25, 25);
+            color: aliceblue;
+            /*font-size: 20px;*/
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        #div_all {
+            align-content: center;
+            position: absolute;
+            top: 20%;
+            /*transform: translate(-50%, -50%);*/
+            /*border-bottom: 5px solid #FFFF00;*/
+            padding: 10px;
+            left: 15%;
+            width: 70%;
+            margin: auto;
+            display: block;
+            text-align: center;
+        }
+
+        .div_blocks {
+            display: block;
+            /*position: absolute;*/
+            border: 5px solid aliceblue; /*#FFFF00;*/
+            padding: 10px;
+            width: 75%;
+            margin: auto;
+            margin-bottom: 30px;
+            /*display: block;*/
+            text-align: center;
+        }
+
+        h3 {
+            text-decoration: underline;
+        }
+
+        li {
+            text-align: left;
+        }
+
+        #this_page {
+            background-color: #3f3f3f;
+            cursor: default;
+        }
+
+        #userToken {
+            font-size: small;
+            visibility: hidden;
+        }
+
+        .link {
+            padding-top: 20px;
+            /*padding-left: 30px;
+            padding-right: 30px;*/
+            width: auto;
+            /*float: left;*/
+        }
+
+        .userlink {
+            right: 0;
+            padding-top: 20px;
+            cursor: pointer;
+        }
+    </style>
+    <script th:inline="javascript">
+        function showAddingToFavourites() {
+            var token = /*[[${userToken}]]*/ null;
+            var formElements = document.getElementsByClassName("addingForm");
+            var link = document.getElementsByClassName("link");
+            var userLink = document.getElementsByClassName("userlink");
+            if (token === null) {
+                //alert("no Token + " + link.length)
+                for (var i = 0; i < link.length; i++) {
+                    console.log("link" + i);
+                    userLink[i].style.display = "none";
+                    userLink[i].style.hidden = "true";
+                }
+                for (var i = 0; i<formElements.length; i++){
+                    console.log("form" + i);
+                    formElements[i].style.display = "none";
+                }
+            } else {
+                for (var i = 0; i < userLink.length + 3; i++) {
+                    link[i].style.display = "none";
+                    link[i].style.hidden = "true";
+                }
+            }
+        }
+
+    </script>
+</head>
+<body onload="showAddingToFavourites()">
+<div id="div_menu">
+    <ul class="products-clearfix">
+        <li class="product-wrapper">
+            <a href="#">
+                <button id="this_page" type="submit">Умови прокату</button>
+            </a>
+        </li>
+        <li class="product-wrapper">
+            <a href="**/catalog">
+                <button class="link" type="submit">Каталог</button>
+            </a>
+        </li>
+        <li class="product-wrapper">
+            <a th:href="@{/users/catalog/{userToken}(userToken=${userToken})}" class="div_button">
+                <!--<a th:href="@{/users/catalog/{token}(token=${token})}" class="div_button">-->
+                <button class="userlink" type="submit" >Каталог</button>
+            </a>
+        </li>
+        <li class="product-wrapper">
+            <a href="/signUp">
+                <button class="link" type="submit">Реєстрація</button>
+            </a>
+        </li>
+        <li class="product-wrapper">
+            <a href="/login">
+                <button class="link" type="submit">Вхід</button>
+            </a>
+        </li>
+        <li class="product-wrapper">
+            <a th:href="@{/users/home/{userToken}(userToken=${userToken})}">
+                <button class="userlink" type="submit">Мій кабінет</button>
+            </a>
+        </li>
+        <li class="product-wrapper">
+            <a th:href="@{/users/out/{userToken}(userToken=${userToken})}" class="div_button">
+                <button class="userlink" type="submit" >Вийти</button>
+            </a>
+        </li>
+    </ul>
+</div>
+<span id="userToken" th:text="${userToken}"></span>
+<div id="div_all">
+    <div class="div_blocks">
+        <h3>Оренда машин - умови прокату</h3>
+        <p>Оренда транспортного засобу – відповідальний вчинок, тому варто чітко дотримуватись встановлених правил.</p>
+        <p>Для оренди необхідно мати наступні документи:</p>
+        <ul>
+            <li>Власний паспорт. Особа, яка орендує автомобіль повинна бути старше 21 року;</li>
+            <li>Водійські права, що засвідчують стаж водіння не менше трьох років.</li>
+        </ul>
+    </div>
+    <div class="div_blocks">
+        <h3>Оплата</h3>
+        <p>Оплату за оренду автомобіля можна здійснити готівкою, або за допомогою банківської картки
+            Visa/MasterCard.</p>
+        <p>Під час підписання договору варто здійснити оплату за весь період користування автомобілем.</p>
+        <p>Залишити завдаток – 400 Євро</p>
+        <p style="font-weight: bold">Завдаток може списуватись у наступних випадках:</p>
+        <ul>
+            <li>Неповний бак – 1.5 $/літр палива.</li>
+            <li>Авто потребує мийки – 10 $</li>
+            <li>Пошкоджено шини/диски – 150 $ за 1 шину/диск</li>
+            <li>Царапини на елементах кузова – 200 $/елемент</li>
+            <li>Необхідна хімчистка салону – 200 $</li>
+            <li>Cкол на склі – 100 $ за 1 скол</li>
+            <li>Розбите скло – 400 $</li>
+            <li>Прокурений салон – 400 $</li>
+            <li>Потрапляння авто у ДТП – відшкодування всієї вартості нанесених збитків</li>
+            <li>Втрата ключів/документів – 400 $</li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

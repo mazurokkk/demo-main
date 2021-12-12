@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Каталог</title>
+    <style>
+        body {
+            background-color: rgb(25, 25, 25);
+        }
+
+        #div_menu {
+            position: absolute;
+            left: 50%;
+            top: 10%;
+            transform: translate(-50%, -50%);
+            border-bottom: 5px solid aliceblue; /*#FFFF00;*/
+            padding: 10px;
+            width: 90%;
+            margin: auto;
+            display: block;
+            align-items: center;
+            text-align: center;
+        }
+
+        #div_all{
+            align-content: center;
+            position: absolute;
+            top: 20%;
+            margin: auto;
+            display: block;
+            padding: 10px;
+            font-weight: lighter;
+        }
+
+        .products-clearfix {
+            align-content: center;
+        }
+
+        .product-wrapper {
+            display: inline-block;
+            width: 100%;
+            float: left;
+            transition: width .2s;
+            /*align-items: center;*/
+        }
+
+        @media only screen and (min-width: 450px) {
+            .product-wrapper {
+                width: 50%;
+            }
+        }
+
+        @media only screen and (min-width: 768px) {
+            .product-wrapper {
+                width: 33.333%;
+            }
+        }
+
+        @media only screen and (min-width: 1000px) {
+            .product-wrapper {
+                width: 25%;
+            }
+        }
+
+        .product {
+            display: block;
+            border: 1px solid rgb(25, 25, 25);
+            border-radius: 3px;
+            position: relative;
+            background: rgb(25, 25, 25);
+            margin: 0 20px 20px 0;
+            text-decoration: none;
+            color: rgb(25, 25, 25);
+            z-index: 0;
+            height: 450px;
+        }
+
+        .product-photo {
+            position: relative;
+            padding-bottom: 100%;
+            overflow: hidden;
+        }
+
+        .product-photo img {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            max-width: 100%;
+            max-height: 100%;
+            margin: auto;
+            transition: transform .4s ease-out;
+        }
+
+        .product:hover .product-photo img {
+            transform: scale(1.05);
+        }
+
+        .product p {
+            position: relative;
+            text-align: center;
+            margin: 0;
+            font-size: 1em;
+            line-height: 1.8em;
+            overflow: hidden;
+            color: aliceblue;
+            text-transform: uppercase;
+            /*font-family: Mak;*/
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a {
+            text-decoration: none;
+            color: aliceblue;
+        }
+
+        .link {
+            padding-top: 20px;
+            width: auto;
+            /*float: left;*/
+        }
+
+        .userlink {
+            right: 0;
+            padding-top: 20px;
+            cursor: pointer;
+        }
+
+        .addingForm {
+            padding-top: 5px;
+            cursor: pointer;
+        }
+
+        button {
+            target: "_self";
+            data-keep-roots: "true";
+            data-anchor-comp-id: "";
+            data-anchor: "dataItem-ius9m6yf";
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            background-color: rgb(25, 25, 25);
+            color: aliceblue;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .linkButton {
+            width: auto;
+            float: left;
+            cursor: pointer;
+        }
+
+        #this_page {
+            background-color: #3f3f3f;
+            cursor: default;
+        }
+
+    </style>
+    <script th:inline="javascript">
+        function showAddingToFavourites() {
+            var token = /*[[${userToken}]]*/ null;
+            var formElements = document.getElementsByClassName("addingForm");
+            var link = document.getElementsByClassName("link");
+            var userLink = document.getElementsByClassName("userlink");
+            if (token === null) {
+                //alert("no Token + " + link.length)
+                for (var i = 0; i < link.length; i++) {
+                    console.log("link" + i);
+                    userLink[i].style.display = "none";
+                }
+            for (var i = 0; i<formElements.length; i++){
+                console.log("form" + i);
+                formElements[i].style.display = "none";
+            }
+            } else {
+                for (var i = 0; i < userLink.length + 3; i++) {
+                    link[i].style.display = "none";
+                }
+            }
+        }
+
+    </script>
+</head>
+<body onload="showAddingToFavourites()">
+<output style="color: aliceblue; visibility: hidden" th:text="${userToken}"></output>
+
+<div id="div_menu">
+    <ul class="products-clearfix">
+        <li class="product-wrapper">
+            <a  th:href="@{/rules/{userToken}(userToken=${userToken})}">
+                <button class="userlink" type="submit">Умови прокату</button>
+            </a>
+            <a  href="/rules">
+                <button class="link" type="submit">Умови прокату</button>
+            </a>
+        </li>
+        <li class="product-wrapper">
+            <a href="#">
+                <button id="this_page" type="submit">Каталог</button>
+            </a>
+        </li>
+        <li class="product-wrapper">
+            <a href="/signUp">
+                <button class="link" type="submit">Реєстрація</button>
+            </a>
+        </li>
+        <li class="product-wrapper">
+            <a href="/login">
+                <button class="link" type="submit">Вхід</button>
+            </a>
+        </li>
+        <li class="product-wrapper">
+            <a th:href="@{/users/home/{userToken}(userToken=${userToken})}">
+                <button class="userlink" type="submit">Мій кабінет</button>
+            </a>
+        </li>
+        <li class="product-wrapper">
+            <a th:href="@{/users/out/{userToken}(userToken=${userToken})}" class="div_button">
+                <button class="userlink" type="submit" >Вийти</button>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div id="div_all">
+    <ul class="products-clearfix">
+        <li class="product-wrapper" th:each="product : ${allCars}">
+            <div class="product">
+                <div class="product-photo">
+                    <img src="/img/{product.image}" th:src="${(product.image != null) ? '/img/'+ product.image : ''}"
+                         alt="no images">
+                </div>
+                <p th:text="${product.model}"></p>
+                <p>Коробка передач: <span th:each="transmissionBox: ${product.transmissionBox}"
+                                          th:text="${transmissionBox}"></span></p>
+                <p>Ціна за добу: <span th:text="${product.pricePerDay}"></span> $</p>
+
+                <form class="link" th:action="@{**/catalog/car/{id}(id=${product.id})}" method="get">
+                    <button class="linkButton" type="submit">Детальніше</button>
+                </form>
+                <form class="userlink"
+                      th:action="@{/users/catalog/{userToken}/car/{productId}(userToken=${userToken},productId=${product.id})}"
+                      method="get">
+                    <button class="linkButton" type="submit">Детальніше</button>
+                </form>
+            </div>
+            <form class="addingForm"
+                  th:action="@{/favourites/add/{userToken}/{productId}(userToken=${userToken},productId=${product.id})}"
+                  method="get">
+                <button type="submit">Зберегти</button>
+            </form>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

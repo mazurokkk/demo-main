@@ -1,0 +1,131 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Реєстрація</title>
+<style>
+    body{
+        background-color: rgb(25,25,25);
+    }
+
+    #h1{
+        text-align:center;
+        line-height:1.875em;
+        color: aliceblue;
+        font-size: 45px;
+    }
+
+    .table{
+        /*margin-left: calc((100% - 280px) * 0.5);*/
+        text-align:left;
+        line-height:1.875em;
+        color: aliceblue;
+        font-size: 25px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+
+    td{
+        text-align: right;
+        padding: 8px;
+        font-size: 18px;
+    }
+
+    .td_input{
+        text-align: center;
+    }
+
+    .td_button{
+        text-align: left;
+    }
+
+    .rfield{
+        font-size: 15px;
+    }
+
+    input{
+        border: 4px solid rgb(25,25,25);
+    }
+
+    input:focus{
+        border-color: darkred;
+    }
+
+    button {
+        target: "_self";
+        data-keep-roots: "true";
+        data-anchor-comp-id: "";
+        data-anchor: "dataItem-ius9m6yf";
+        padding: 1rem 1.5rem;
+        text-decoration: none;
+        background-color: rgb(25, 25, 25);
+        color: aliceblue;
+        font-size: 20px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    #error{
+        position: absolute;
+        left: 50%;
+        /*top: 10%;*/
+        transform: translate(-50%, -50%);
+        /*border: 5px solid #FFFF00;*/
+        padding: 10px;
+        font-size: 20px;
+        color: red;
+    }
+</style>
+</head>
+<body>
+
+<h1 id="h1">Реєстрація</h1>
+<form action="/users/registered" method="POST" class="rf">
+    <table class="table">
+        <tr>
+            <td><span id="error" th:text="${error}"></span></td>
+        </tr>
+        <tr>
+            <td>Ім'я:</td>
+            <td class="td_input"><input class="rfield" name="firstname" type="text" required></td>
+        </tr>
+        <tr>
+            <td>Прізвище:</td>
+            <td class="td_input"><input class="rfield" name="surname" type="text" required></td>
+        </tr>
+        <tr>
+            <td>Логін:</td>
+            <td class="td_input"><input class="rfield" name="username" type="text" required></td>
+        </tr>
+        <tr>
+            <td>Пароль:</td>
+            <td class="td_input"><input class="rfield" type="password" name="password" required></td>
+        </tr>
+        <tr>
+            <td>Стать:</td>
+            <td class="td_input">
+                <input class="rfield" type="radio" name="sex" value="0" >Чоловіча
+                <input class="rfield" type="radio" name="sex" value="1" required>Жіноча
+            </td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td class="td_input"><input class="rfield" type="email" name="email"required></td>
+        </tr>
+        <tr>
+            <td>Моб. телефон:</td>
+            <td class="td_input"><input class="rfield" type="number" name="phone"required></td>
+        </tr>
+        <tr>
+            <td style="visibility: hidden">hidden</td>
+            <td class="td_button">
+                <button type="submit" >Зареєструватись</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+
+</body>
+</html>

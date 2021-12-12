@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background-color: rgb(25, 25, 25);
+            /*width: 100%;*/
+        }
+
+        #div_menu {
+            position: absolute;
+            left: 50%;
+            top: 10%;
+            transform: translate(-50%, -50%);
+            border-bottom: 5px solid aliceblue; /*#FFFF00;*/
+            padding: 10px;
+            width: 90%;
+            margin: auto;
+            display: block;
+            align-items: center;
+            text-align: center;
+        }
+
+        #div_all {
+            align-content: center;
+            position: absolute;
+            top: 20%;
+            margin: auto;
+            display: block;
+            padding: 10px;
+            font-weight: lighter;
+        }
+
+        /*.products-clearfix {
+            !*align-content: center;*!
+            position: absolute;
+            margin: auto;
+            left: 25%;
+            right: 25%;
+            width: 100%;
+            !*top: 65%;*!
+            !*transform: translate(-25%, -75%);*!
+            padding: 10px;
+        }
+
+        .product-wrapper {
+            display: inline-block;
+            padding: 10px;
+            !*width: 25%;*!
+            float: left;
+            transition: width .2s;
+            !*align-items: center;*!
+        }*/
+
+        .products-clearfix {
+            /*align-content: center;*/
+            position: absolute;
+            /*margin: auto;*/
+            width: 90%;
+            transform: translate(0%, -120%);
+            /*padding: 10px;*/
+        }
+
+        .product-wrapper {
+            display: inline-block;
+            width: 25%;
+            float: left;
+            transition: width .2s;
+        }
+
+        .link {
+            padding-top: 20px;
+            width: auto;
+            /*float: left;*/
+        }
+
+        .userlink {
+            /*right: 0;*/
+            padding-top: 20px;
+            cursor: pointer;
+        }
+
+        .addingForm {
+            padding-top: 5px;
+            cursor: pointer;
+        }
+
+        button {
+            target: "_self";
+            data-keep-roots: "true";
+            data-anchor-comp-id: "";
+            data-anchor: "dataItem-ius9m6yf";
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            background-color: rgb(25, 25, 25);
+            color: aliceblue;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        /*.linkButton {
+            width: auto;
+            float: left;
+            cursor: pointer;
+        }*/
+
+        table {
+            margin: auto;
+            width: 50%;
+        }
+
+        /*#upTable {
+            padding-bottom: 30px;
+        }*/
+
+        th {
+            text-align: left;
+            line-height: 1.875em;
+            color: aliceblue;
+        }
+
+        tr {
+            width: 100%;
+            margin: auto;
+            color: aliceblue;
+        }
+
+        td {
+            text-align: left;
+            line-height: 1.875em;
+            color: aliceblue;
+            width: 50%;
+            margin: auto;
+        }
+
+        .product {
+            display: block;
+            border-radius: 3px;
+            position: relative;
+            text-decoration: none;
+            z-index: 0;
+            height: 300px;
+            width: 300px;
+        }
+
+        img {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            max-width: 100%;
+            max-height: 100%;
+            margin: auto;
+            color: aliceblue;
+        }
+
+        #product_id {
+            display: none;
+        }
+
+
+        span {
+            padding-top: 20px;
+            font-size: 25px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            /*color: lightgreen;*/
+        }
+
+        .form {
+
+            background-color: #051900;
+            border-radius: 150px;
+            color: lightgreen;
+        }
+
+        .form td {
+            color: #4a864a;
+        }
+
+        .form tr {
+            color: darkolivegreen;
+        }
+
+        #priceForCar {
+            visibility: hidden;
+        }
+
+        .form button {
+            target: "_self";
+            data-keep-roots: "true";
+            data-anchor-comp-id: "";
+            data-anchor: "dataItem-ius9m6yf";
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            background-color: #051900;
+            color: #4a864a;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+    <script th:inline="javascript">
+        function checkdateStart() {
+            var date = document.getElementById('dateStart').value;
+            var currentdate = new Date();
+            var day = currentdate.getDate();
+            var month = currentdate.getMonth() + 1;
+            var year = currentdate.getFullYear();
+            if (month < 10) month = "0" + month;
+            if (day < 10) day = "0" + day;
+            var currentDate = year + '-' + month + '-' + day;
+            //alert(date + " / " + currentDate)
+            if (date < currentDate) {
+                document.getElementById('error').hidden = false;
+                document.getElementById('error').innerHTML = "* ви ввели минулу дату";
+            } else {
+                document.getElementById('error').hidden = true;
+            }
+        }
+
+        function checkdateFinish() {
+            var date = document.getElementById('dateStart').value;
+            var date2 = document.getElementById('dateFinish').value;
+            if (date2 < date) {
+                document.getElementById('error').hidden = false;
+                document.getElementById('error').innerHTML = "* дата видачі після дати повернення";
+            } else {
+                document.getElementById('error').hidden = true;
+            }
+        }
+
+        function checktimeStart() {
+            var time = document.getElementById('timeStart').value;
+            var date = document.getElementById('dateStart').value;
+            var currenttime = new Date();
+
+            var minutes = currenttime.getMinutes();
+            var hours = currenttime.getHours();
+            if (minutes < 10) minutes = "0" + minutes;
+            if (hours < 10) hours = "0" + hours;
+            var currentTime = hours + ':' + minutes;
+
+            var day = currenttime.getDate();
+            var month = currenttime.getMonth() + 1;
+            var year = currenttime.getFullYear();
+            if (month < 10) month = "0" + month;
+            if (day < 10) day = "0" + day;
+            var currentDate = year + '-' + month + '-' + day;
+
+            //alert(time + " - " + currentTime)
+            if (time < currentTime && date === currentDate) {
+                document.getElementById('error').hidden = false;
+                document.getElementById('error').innerHTML = "* ви ввели минулий час";
+            } else {
+                document.getElementById('error').hidden = true;
+            }
+        }
+
+        function makeOrder(){
+            var ds = document.forms["form"]["dateStart"].value;
+            var df = document.forms["form"]["dateFinish"].value;
+            var ts = document.forms["form"]["timeStart"].value;
+            var tf = document.forms["form"]["timeFinish"].value;
+            var pr = document.forms["form"]["priceForCar"].value;
+
+            if (ds == null || ds === ""
+                || df == null || df === ""
+                || ts == null || ts === ""
+                || tf == null || tf === ""
+                || pr == null || pr === "") {
+                //alert("disabled");
+                document.getElementById('error').hidden = false;
+                document.getElementById('error').innerHTML = '* для оформлення замовлення заповніть всі поля та розрахуйте вартість';
+                document.getElementById('button').disabled = true;
+            }
+            /*else {
+                document.getElementById('button').disabled = false;
+            }*/
+        }
+
+        function returnPrice() {
+            var ds = document.forms["form"]["dateStart"].value;
+            var df = document.forms["form"]["dateFinish"].value;
+            var ts = document.forms["form"]["timeStart"].value;
+            var tf = document.forms["form"]["timeFinish"].value;
+
+            if (ds == null || ds === ""
+                || df == null || df === ""
+                || ts == null || ts === ""
+                || tf == null || tf === "") {
+                document.getElementById('error').hidden = false;
+                document.getElementById('error').innerHTML = '* для розрахунку вартості заповніть всі поля';
+                document.getElementById('checkbox').checked = false;
+            } else {
+                document.getElementById('checkbox').checked = true;
+                document.getElementById('error').hidden = true;
+                document.getElementById('button').disabled = false;
+                var totalprice, pr;
+                var date1 = new Date(ds);
+                var date2 = new Date(df);
+                var tOS = "09:00";
+                var tOF = "21:00";
+                var diffDates = parseInt((date2 - date1) / (1000 * 60 * 60 * 24)) + 1;
+                switch (diffDates) {
+                    case 1:
+                    case 2:
+                    case 3:
+                        pr = /*[[${product.pricePerDay}]]*/ null;
+                        totalprice = (pr + 20) * diffDates;
+                        document.getElementById('messagePrice').innerHTML = '* ціна автомобіля за добу: ' + (pr + 20) + ' $, кількість діб - ' + diffDates;
+                        break;
+                    case 4:
+                    case 5:
+                    case 6:
+                    case 7:
+                        pr = /*[[${product.pricePerDay}]]*/ null;
+                        totalprice = (pr + 15) * diffDates;
+                        document.getElementById('messagePrice').innerHTML = '* ціна автомобіля за добу: ' + (pr + 15) + ' $, кількість діб - ' + diffDates;
+                        break;
+                    case 8:
+                    case 9:
+                    case 10:
+                    case 11:
+                    case 12:
+                    case 13:
+                    case 14:
+                        pr = /*[[${product.pricePerDay}]]*/ null;
+                        totalprice = (pr + 10) * diffDates;
+                        document.getElementById('messagePrice').innerHTML = '* ціна автомобіля за добу: ' + (pr + 10) + ' $, кількість діб - ' + diffDates;
+                        break;
+                    case 15:
+                    case 16:
+                    case 17:
+                    case 18:
+                    case 19:
+                    case 20:
+                    case 21:
+                    case 22:
+                    case 23:
+                    case 24:
+                    case 25:
+                    case 26:
+                    case 27:
+                    case 28:
+                    case 29:
+                    case 30:
+                        pr = /*[[${product.pricePerDay}]]*/ null;
+                        totalprice = (pr + 5) * diffDates;
+                        document.getElementById('messagePrice').innerHTML = '* ціна автомобіля за добу: ' + (pr + 5) + ' $, кількість діб - ' + diffDates;
+                        break;
+                    default:
+                        pr = /*[[${product.pricePerDay}]]*/ null;
+                        totalprice = pr * diffDates;
+                        document.getElementById('messagePrice').innerHTML = '* ціна автомобіля за добу: ' + pr + ' $, кількість діб - ' + diffDates;
+                        break;
+                }
+                if (ts > tOF || ts < tOS) {
+                    totalprice += 10;
+                    document.getElementById('messageStart').innerHTML = '** видача автомобіля в оренду відбувається в неробочий час, вартість цієї послуги становить 10 $';
+                }
+                if (tf > tOF || tf < tOS) {
+                    totalprice += 10;
+                    document.getElementById('messageFinish').innerHTML = '** повернення автомобіля відбувається в неробочий час, вартість цієї послуги становить 10 $';
+                }
+                document.getElementById('price').innerHTML = totalprice;
+                document.getElementById('priceForCar').value = totalprice;
+            }
+        }
+
+        function showAddingToFavourites() {
+            var token = /*[[${userToken}]]*/ null;
+            var formElements = document.getElementsByClassName("addingForm");
+            var link = document.getElementsByClassName("link");
+            var userLink = document.getElementsByClassName("userlink");
+            if (token === null) {
+                //alert("no Token + " + link.length)
+                for (var i = 0; i < userLink.length; i++) {
+                    //console.log("link" + i);
+                    userLink[i].style.display = "none";
+                }
+                for (var i = 0; i < formElements.length; i++) {
+                    //console.log("form" + i);
+                    formElements[i].style.display = "none";
+                }
+            } else {
+                //alert("token +" + userLink.length)
+                for (var i = 0; i < link.length; i++) {
+                    link[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="showAddingToFavourites()">
+<div id="div_menu">
+    <ul class="products-clearfix">
+        <li class="product-wrapper">
+            <a th:href="@{/rules/{userToken}(userToken=${userToken})}">
+                <button class="userlink" type="submit">Умови прокату</button>
+            </a>
+            <a href="/rules">
+                <button class="link" type="submit">Умови прокату</button>
+            </a>
+        </li>
+        <li class="product-wrapper">
+            <a href="**/catalog">
+                <button class="link" type="submit">Каталог</button>
+            </a>
+            <a th:href="@{/users/catalog/{userToken}(userToken=${userToken})}">
+                <button class="userlink" id="this_page" type="submit">Каталог</button>
+            </a>
+        </li>
+        <li class="product-wrapper">
+            <a href="/signUp">
+                <button class="link" type="submit">Реєстрація</button>
+            </a>
+        </li>
+        <li class="product-wrapper">
+            <a href="/login">
+                <button class="link" type="submit">Вхід</button>
+            </a>
+        </li>
+        <li class="product-wrapper">
+            <a th:href="@{/users/home/{userToken}(userToken=${userToken})}">
+                <button class="userlink" type="submit">Мій кабінет</button>
+            </a>
+        </li>
+        <li class="product-wrapper">
+            <a th:href="@{/users/out/{userToken}(userToken=${userToken})}" class="div_button">
+                <button class="userlink" type="submit">Вийти</button>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="div_all">
+    <table id="upTable" class="table">
+        <tr>
+            <th>Модель</th>
+            <td th:text="${product.model}"></td>
+        </tr>
+        <tr>
+            <th>Коробка передач</th>
+            <td th:each="transmissionBox: ${product.transmissionBox}" th:text="${transmissionBox}"></td>
+        </tr>
+        <tr>
+            <th>Кількість місць</th>
+            <td th:text="${product.numberOfSeats}"></td>
+        </tr>
+        <tr>
+            <th>Рік випуску</th>
+            <td th:text="${product.yearOfIssue}"></td>
+        </tr>
+        <tr>
+            <th>Ціна за добу</th>
+            <td id="pricePerDay" th:text="${product.pricePerDay}"></td>
+        </tr>
+        <tr>
+            <th>Фото</th>
+            <td class="product">
+                <img src="/img/{product.image}" th:src="${(product.image != null)? '/img/'+product.image : ''}"
+                     alt="no images">
+            </td>
+        </tr>
+        <tr>
+            <th>Опис</th>
+            <td th:text="${product.description}"></td>
+        </tr>
+        <tr>
+            <th>Категорія</th>
+            <td th:each="category: ${product.category}" th:text="${category.name}"></td>
+        </tr>
+        <!--<tr>
+            <td>
+                <form class="addingForm"
+                      th:action="@{/favourites/add/{userToken}/{productId}(userToken=${userToken},productId=${product.id})}"
+                      method="get">
+                    <button type="submit">Зберегти</button>
+                </form>
+            </td>
+        </tr>-->
+    </table>
+    <form th:action="@{/ordered/make_an_order/{userToken}/{productId}(userToken=${userToken}, productId=${product.id})}"
+          method="get" name="form" class="form">
+        <!--th:action="@{**/ordered/make_an_order/{id}(id=${user.id})}" method="post" name="form">-->
+        <table class="table">
+            <tr id="product_id">
+                <th>Product ID</th>
+                <td th:text="${product.id}"></td>
+                <th>UserId</th>
+                <td>
+                    <output name="userToken" th:text="${userToken}"></output>
+                </td>
+            </tr>
+            <tr>
+                <span class="link">Можете розрахувати вартість автомобіля</span>
+                <span class="userlink">Можете розрахувати вартість автомобіля, а також залишити заявку на оформлення документів</span>
+            </tr>
+
+            <tr id="error" style='color:red'></tr>
+            <tr>
+                <td>Дата початку</td>
+                <td>Дата кінця</td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="dateStart" type="date" name="dateStart" class="rfield" required
+                           onchange="checkdateStart()">
+                </td>
+                <td>
+                    <input id="dateFinish" type="date" name="dateFinish" class="rfield" required
+                           onchange="checkdateFinish()">
+                </td>
+            </tr>
+            <tr>
+                <td>Час початку</td>
+                <td>Час кінця</td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="timeStart" type="time" name="timeStart" class="rfield" required
+                           onchange="checktimeStart()">
+                </td>
+                <td>
+                    <input type="time" name="timeFinish" class="rfield" required>
+                </td>
+            </tr>
+            <tr>
+                <td>Ціна</td>
+                <td>
+                    <output id="price"></output>
+                    <input type="text" id="priceForCar" name="price">
+                </td>
+                <td>
+                    <input id="checkbox" type="checkbox" onchange=returnPrice()>Розрахувати ціну
+                </td>
+            </tr>
+            <!--<tr id="messagePrice"></tr>
+            <tr id="messageStart"></tr>
+            <tr id="messageFinish"></tr>-->
+            <tr>
+                <td id="messagePrice"></td>
+                <td>
+                   <p id="messageStart"></p>
+                    <p id="messageFinish"></p>
+                </td>
+                <td colspan="2">
+                    <button id="button" class="userlink" type="submit" onclick="makeOrder()">Подати заявку для оформлення замовлення</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

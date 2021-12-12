@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Головна</title>
+    <!--    <link rel="stylesheet" type="text/css" media="all" href="css/index.css" data-th-href="@{/css/index.css}">-->
+    <style>
+        /*
+    # id
+    . class
+    */
+        body {
+            background-color: rgb(25, 25, 25);
+        }
+
+        #div_menu {
+            position: absolute;
+            left: 50%;
+            top: 10%;
+            transform: translate(-50%, -50%);
+            border-bottom: 5px solid aliceblue;/*#FFFF00;*/
+            padding: 10px;
+            width: 90%;
+            /*height: 75%;*/
+            margin: auto;
+            display: block;
+            text-align: center;
+            /*position: absolute;*/
+        }
+
+        #div_all {
+            position: absolute;
+            left: 50%;
+            top: 20%;
+            transform: translate(-50%, -50%);
+            /*border-bottom: 5px solid #FFFF00;*/
+            padding: 10px;
+            width: 90%;
+            margin: auto;
+            display: block;
+            text-align: center;
+        }
+
+        .products-clearfix {
+            /*align-content: center;*/
+            position: absolute;
+            margin: auto;
+            left: 25%;
+            right: 25%;
+            width: 100%;
+            top: 65%;
+            transform: translate(-25%, -75%);
+            padding: 10px;
+        }
+
+        .product-wrapper {
+            display: inline-table;
+            padding: 10px;
+            /*width: 25%;*/
+            float: none;
+            transition: width .2s;
+            /*align-items: center;*/
+        }
+
+        #section {
+            min-width: 980px;
+            position: absolute;
+            margin-left: 0px;
+            top: 0px;
+            height: 500px;
+            left: 0px;
+            width: 100%;
+        }
+
+        #div1 {
+            data-content-width: "980";
+            flex: 980 1 0%;
+            margin-left: 0px;
+            min-width: 980px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            top: 0px;
+            height: 900px;
+            position: relative;
+        }
+
+        #div2 {
+            data-background-image: "";
+            data-position: "absolute";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0px;
+            background-color: rgb(25, 25, 25);
+        }
+
+        .comp {
+            margin-left: calc((100% - 980px) * 0.5);
+        }
+
+        #div3 {
+            title: "";
+            data-is-responsive: "false";
+            data-display-mode: "fill";
+            data-content-padding-horizontal: "0";
+            data-content-padding-vertical: "0";
+            data-exact-height: "420";
+            left: 20px;
+            position: absolute;
+            top: 60px;
+            width: 943px;
+            height: 418px;
+        }
+
+        #div4 {
+            width: 943px;
+            height: 418px;
+        }
+
+        #div5 {
+            data-has-bg-scroll-effect: "";
+            data-image-info: "{&quot;imageData&quot;:{&quot;id&quot;:&quot;dataItem-kigpp7ii&quot;,&quot;type&quot;:&quot;Image&quot;,&quot;uri&quot;:&quot;89712714a13f44968d486aa56e53bd0e.jpeg&quot;,&quot;alt&quot;:&quot;Car Dealer&quot;,&quot;description&quot;:&quot;&quot;,&quot;width&quot;:4200,&quot;height&quot;:2804,&quot;name&quot;:&quot;Car Dealer&quot;,&quot;metaData&quot;:{&quot;isPreset&quot;:false,&quot;schemaVersion&quot;:&quot;1.0&quot;,&quot;isHidden&quot;:false,&quot;pageId&quot;:&quot;r5g6a&quot;},&quot;title&quot;:&quot;&quot;,&quot;displayMode&quot;:&quot;fill&quot;},&quot;containerId&quot;:&quot;comp-kigpp79c&quot;,&quot;displayMode&quot;:&quot;fill&quot;}";
+            data-has-ssr-src: "";
+            data-is-svg: "false";
+            data-is-svg-mask: "false";
+            width: 940px;
+            height: 420px;
+        }
+
+        #image {
+            alt: "Car Dealer";
+            data-type: "image";
+            itemprop: "image";
+            width: 940px;
+            height: 420px;
+            object-fit: cover;
+        }
+
+        #div6 {
+            data-packed: "true";
+            data-vertical-text: "false";
+            left: 20px;
+            width: 940px;
+            position: absolute;
+            pointer-events: none;
+            top: 503px;
+        }
+
+        #h1 {
+            text-align: center;
+            line-height: 1.25em;
+            color: aliceblue;
+            text-transform: uppercase;
+            /*font-family: Mak;*/
+        }
+
+        #div7 {
+            data-packed: "true";
+            data-vertical-text: "false";
+            left: 20px;
+            width: 940px;
+            position: absolute;
+            pointer-events: none;
+            top: 600px;
+        }
+
+        #p1 {
+            text-align: center;
+            line-height: 1.67em;
+            color: aliceblue;
+        }
+
+        #div8 {
+            data-packed: "true";
+            data-vertical-text: "false";
+            left: 20px;
+            width: 940px;
+            position: absolute;
+            pointer-events: none;
+            top: 650px;
+        }
+
+        #p2 {
+            text-align: center;
+            line-height: 1.875em;
+            color: aliceblue;
+        }
+
+        button {
+            target: "_self";
+            data-keep-roots: "true";
+            data-anchor-comp-id: "";
+            data-anchor: "dataItem-ius9m6yf";
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            background-color: rgb(25, 25, 25);
+            color: aliceblue;
+            font-size: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+<body>
+<div id="div_menu">
+    <ul class="products-clearfix">
+        <li class="product-wrapper">
+            <a href="/rules">
+                <button type="submit">Умови прокату</button>
+            </a>
+        </li>
+        <li class="product-wrapper">
+            <a href="**/catalog">
+                <button type="submit">Каталог</button>
+            </a>
+        </li>
+        <li class="product-wrapper">
+            <a href="/signUp">
+                <button type="submit">Реєстрація</button>
+            </a>
+        </li>
+        <li class="product-wrapper">
+            <a href="/login">
+                <button type="submit">Вхід</button>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div id="div_all">
+    <section id="section" data-responsive="true" data-is-screen-width="true" data-col-margin="0" data-row-margin="0">
+        <div id="div1">
+            <div id="div2">
+            </div>
+
+            <div class="comp" id="div3">
+                <div id="div4">
+                    <div id="div5">
+                        <img id="image"
+                             src="https://static.wixstatic.com/media/89712714a13f44968d486aa56e53bd0e.jpeg/v1/fill/w_783,h_350,al_c,q_80,usm_0.66_1.00_0.01/Car%20Dealer.webp">
+                    </div>
+                </div>
+            </div>
+
+            <div class="comp" id="div6">
+                <h1 id="h1">«AUTODEALER» ДО ВАШИХ ПОСЛУГ</h1>
+            </div>
+
+            <div class="comp" id="div7">
+                <p id="p1">У нас ви&nbsp;знайдете підходящий автомобіль</p>
+            </div>
+
+            <div class="comp" id="div8">
+                <p id="p2">Збились з ніг в пошуках підходящого автомобиля?
+                    У компанії «autodealer» є пропозиція саме для вас!
+                    Ми сертифіковані як Автомобільний дилер і пропонуємо
+                    широкий вибір нових авто. </p>
+            </div>
+
+
+        </div>
+
+    </section>
+</div>
+</body>
+</html>

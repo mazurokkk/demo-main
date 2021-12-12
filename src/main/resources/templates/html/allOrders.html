@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background-color: rgb(25, 25, 25);
+            color: aliceblue;
+            align-content: center;
+        }
+
+        #div_menu {
+            position: absolute;
+            left: 50%;
+            top: 10%;
+            transform: translate(-50%, -50%);
+            border-bottom: 5px solid aliceblue; /*#FFFF00;*/
+            padding: 10px;
+            width: 90%;
+            margin: auto;
+            display: block;
+            align-items: center;
+            text-align: center;
+        }
+
+        .products-clearfix {
+            /*align-content: center;*/
+            position: absolute;
+            /*margin: auto;*/
+            width: 90%;
+            transform: translate(0%, -120%);
+            /*padding: 10px;*/
+        }
+
+        .product-wrapper {
+            display: inline-block;
+            width: 25%;
+            float: top;
+            transition: width .2s;
+        }
+
+        .userlink {
+            /*right: 0;*/
+            padding-top: 20px;
+            cursor: pointer;
+        }
+
+        #div_all {
+            align-content: center;
+            position: absolute;
+            left: 50%;
+            top: 10%;
+            transform: translate(-50%, 20%);
+            width: 90%;
+            margin: auto;
+            display: block;
+            padding: 10px;
+            color: aliceblue;
+            text-decoration: none;
+        }
+        table{
+            width: 100%;
+        }
+        td{
+            text-align: center;
+            padding: 8px;
+        }
+        th{
+            text-align: center;
+            padding: 8px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .menuButton {
+            target: "_self";
+            data-keep-roots: "true";
+            data-anchor-comp-id: "";
+            data-anchor: "dataItem-ius9m6yf";
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            background-color: rgb(25, 25, 25);
+            color: aliceblue;
+            font-size: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function finishedOrder(){
+
+        }
+    </script>
+</head>
+<body onload="finishedOrder()">
+<div id="div_menu">
+    <ul class="products-clearfix">
+        <li class="product-wrapper">
+            <a th:href="@{/admin/homePageForAdmin/{userToken}(userToken=${userToken})}">
+                <button class="userlink, menuButton" type="submit">Мій кабінет</button>
+            </a>
+        </li>
+        <li class="product-wrapper">
+            <a th:href="@{/users/out/{userToken}(userToken=${userToken})}" class="div_button">
+                <button type="submit" class="userlink, menuButton">Вийти</button>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="div_all">
+    <span style="visibility: hidden; font-size: small" th:text="${userToken}"></span>
+    <table id="tab">
+        <tr>
+            <th>ID</th>
+            <th>Дата початку оренди</th>
+            <th>Час початку оренди</th>
+            <th>Дата кінця оренди</th>
+            <th>Час кінця оренди</th>
+            <th>Ціна</th>
+            <th>Користувач</th>
+            <th>Автомобіль</th>
+        </tr>
+        <th:block th:each="ordered : ${allOrders}" >
+        <tr>
+            <td th:text="${ordered.id}"></td>
+            <td th:text="${ordered.dateStart}"></td>
+            <td th:text="${ordered.timeStart}"></td>
+            <td th:text="${ordered.dateFinish}"></td>
+            <td th:text="${ordered.timeFinish}"></td>
+            <td th:text="${ordered.price}"></td>
+            <td th:each="user: ${ordered.user}" th:text="${user.username}"></td>
+            <td th:each="product: ${ordered.product}" th:text="${product.model}"></td>
+        </tr>
+        </th:block>
+    </table>
+</div>
+</body>
+</html>

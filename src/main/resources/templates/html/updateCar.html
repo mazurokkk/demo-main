@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background-color: rgb(25, 25, 25);
+        }
+        table{
+            width: 75%;
+            margin-left: auto;
+            margin-right: auto;
+            color: aliceblue;
+        }
+        td, th{
+            text-align: left;
+            padding: 8px;
+        }
+        .product {
+            display: block;
+            position: relative;
+            text-decoration: none;
+            z-index: 0;
+            height: 300px;
+            width: 300px;
+        }
+        img{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            max-width: 100%;
+            max-height: 100%;
+            margin: auto;
+            color: aliceblue;
+        }
+        button {
+            target: "_self";
+            data-keep-roots: "true";
+            data-anchor-comp-id: "";
+            data-anchor: "dataItem-ius9m6yf";
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            background-color: rgb(25, 25, 25);
+            color: aliceblue;
+            font-size: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<form th:action="@{**/products/updated/{id}(id=${product.id})}" method="post" enctype="multipart/form-data">
+  <table class="table">
+      <tr>
+          <th>ID</th>
+          <td th:text="${product.id}"></td>
+      </tr>
+      <tr>
+          <th>Модель</th>
+          <td th:text="${product.model}"></td>
+          <td><input class="rfield" name="model" type="text"></td>
+      </tr>
+      <tr>
+          <th>Коробка передач</th>
+          <td th:each="transmissionBox: ${product.transmissionBox}" th:text="${transmissionBox}"></td>
+          <td>
+              <input class="rfield" name="transmissionBox" type="radio" value="AUTOMATIC"> Автоматична
+              <input class="rfield" name="transmissionBox" type="radio" value="MANUAL"> Механічна
+          </td>
+      </tr>
+      <tr>
+          <th>Кількість місць</th>
+          <td th:text="${product.numberOfSeats}"></td>
+          <td><input class="rfield" name="numberOfSeats" type="number" max="9"></td>
+      </tr>
+      <tr>
+          <th>Рік випуску</th>
+          <td th:text="${product.yearOfIssue}"></td>
+          <td><input class="rfield" name="yearOfIssue" type="number"></td>
+      </tr>
+      <tr>
+          <th>Ціна за добу</th>
+          <td th:text="${product.pricePerDay}"></td>
+          <td><input class="rfield" name="pricePerDay" type="number"></td>
+      </tr>
+      <!--<tr>
+          <th>Кількість днів</th>
+          <td th:text="${product.numberOfDays}"></td>
+          <td><input class="rfield" name="numberOfDays" type="number"></td>
+      </tr>-->
+      <tr>
+          <th>Фото</th>
+          <td class="product">
+              <img src="/img/{product.image}" th:src="${(product.image != null) ? '/img/'+product.image : ''}" alt="no images"  >
+          </td>
+          <td><input class="rfield" id="file" name="file" type="file"></td>
+      </tr>
+      <tr>
+          <th>Опис</th>
+          <td th:text="${product.description}"></td>
+          <td>
+              <textarea class="rfield" name="description"></textarea>
+          </td>
+      </tr>
+      <tr>
+          <th>Категорія</th>
+          <td th:each="category: ${product.category}" th:text="${category.name}"></td>
+          <td>
+              <select name="categoryId">
+                  <option th:each="category: ${allCategories}"
+                          th:value="${category.id}"
+                          th:text="${category.name} + ${category.id}">
+                  </option>
+              </select>
+          </td>
+      </tr>
+      <tr>
+          <td style="visibility: hidden">hidden</td>
+          <td colspan="2">
+              <button type="submit" name= "submit" class="comp2 disabled">Оновити інформацію</button>
+          </td>
+      </tr>
+  </table>
+</form>
+</body>
+</html>

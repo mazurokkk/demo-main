@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    body {
+      background-color: rgb(25, 25, 25);
+      color: aliceblue;
+      align-content: center;
+    }
+    #div_menu {
+      position: absolute;
+      left: 50%;
+      top: 10%;
+      transform: translate(-50%, -50%);
+      border-bottom: 5px solid aliceblue; /*#FFFF00;*/
+      padding: 10px;
+      width: 90%;
+      margin: auto;
+      display: block;
+      align-items: center;
+      text-align: center;
+    }
+
+    .products-clearfix {
+      /*align-content: center;*/
+      position: absolute;
+      /*margin: auto;*/
+      width: 90%;
+      transform: translate(0%, -120%);
+      /*padding: 10px;*/
+    }
+
+    .product-wrapper {
+      display: inline-block;
+      width: 25%;
+      float: left;
+      transition: width .2s;
+    }
+
+    .userlink {
+      /*right: 0;*/
+      padding-top: 20px;
+      cursor: pointer;
+    }
+
+    button {
+      target: "_self";
+      data-keep-roots: "true";
+      data-anchor-comp-id: "";
+      data-anchor: "dataItem-ius9m6yf";
+      padding: 1rem 1.5rem;
+      text-decoration: none;
+      background-color: rgb(25, 25, 25);
+      color: aliceblue;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    #div_all {
+      align-content: center;
+      position: absolute;
+      left: 25%;
+      top: 20%;
+      transform: translate(-25%, 0%);
+      width: 90%;
+      margin: auto;
+      display: block;
+      padding: 10px;
+      color: aliceblue;
+      text-decoration: none;
+    }
+
+    table{
+      margin-left: auto;
+      margin-right: auto;
+      width: 75%;
+    }
+    td, th{
+      text-align: center;
+      padding: 8px;
+      font-size: 18px;
+    }
+    h1{
+      text-align: center;
+      padding-bottom: 40px;
+    }
+    a{
+      text-decoration: none;
+    }
+    #model{
+      cursor: pointer;
+      color: aliceblue;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+<div id="div_menu">
+  <ul class="products-clearfix">
+    <li class="product-wrapper">
+      <a  th:href="@{/rules/{userToken}(userToken=${userToken})}">
+        <button class="userlink" type="submit">Умови прокату</button>
+      </a>
+    </li>
+    <li class="product-wrapper">
+      <a th:href="@{/users/catalog/{userToken}(userToken=${userToken})}">
+        <button class="userlink" type="submit">Каталог</button>
+      </a>
+    </li>
+    <li class="product-wrapper">
+      <a th:href="@{/users/home/{userToken}(userToken=${userToken})}">
+        <button class="userlink" type="submit">Мій кабінет</button>
+      </a>
+    </li>
+    <li class="product-wrapper">
+      <a th:href="@{/users/out/{userToken}(userToken=${userToken})}" class="div_button">
+        <button class="userlink" type="submit" >Вийти</button>
+      </a>
+    </li>
+  </ul>
+</div>
+<div id="div_all">
+  <span style="visibility: hidden; font-size: small" th:text="${userToken}"></span>
+  <h1>Список замовлень</h1>
+  <table id="tab">
+    <tr>
+      <th>Автомобіль</th>
+      <th>Дата початку оренди</th>
+      <th>Час початку оренди</th>
+      <th>Дата кінця оренди</th>
+      <th>Час кінця оренди</th>
+      <th>Ціна ($)</th>
+    </tr>
+    <th:block th:each="ordered : ${allUserOrderers}" >
+      <tr>
+        <td th:each="product: ${ordered.product}">
+          <a th:href="@{/users/catalog/{userToken}/car/{productId}(userToken=${userToken},productId=${product.id})}">
+            <span id="model" th:text="${product.model}"></span>
+          </a>
+        </td>
+        <td th:text="${ordered.dateStart}"></td>
+        <td th:text="${ordered.timeStart}"></td>
+        <td th:text="${ordered.dateFinish}"></td>
+        <td th:text="${ordered.timeFinish}"></td>
+        <td th:text="${ordered.price}"></td>
+      </tr>
+    </th:block>
+  </table>
+</div>
+</body>
+</html>
