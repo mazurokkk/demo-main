@@ -1,12 +1,12 @@
-package alla.verkhohliadova.demo_car.controller;
+package oleh.mazurok.demo_car.controller;
 
-import alla.verkhohliadova.demo_car.dto.response.CategoryResponse;
-import alla.verkhohliadova.demo_car.dto.response.OrderedResponse;
-import alla.verkhohliadova.demo_car.dto.response.ProductResponse;
-import alla.verkhohliadova.demo_car.dto.response.UserResponse;
-import alla.verkhohliadova.demo_car.entity.Product;
-import alla.verkhohliadova.demo_car.security.JwtTokenTool;
-import alla.verkhohliadova.demo_car.service.*;
+import oleh.mazurok.demo_car.dto.response.CategoryResponse;
+import oleh.mazurok.demo_car.dto.response.OrderedResponse;
+import oleh.mazurok.demo_car.dto.response.ProductResponse;
+import oleh.mazurok.demo_car.dto.response.UserResponse;
+import oleh.mazurok.demo_car.entity.Product;
+import oleh.mazurok.demo_car.security.JwtTokenTool;
+import oleh.mazurok.demo_car.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
