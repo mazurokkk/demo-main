@@ -1,7 +1,7 @@
-package alla.verkhohliadova.demo_car.config;
+package oleh.mazurok.demo_car.config;
 
-import alla.verkhohliadova.demo_car.security.JwtConfigure;
-import alla.verkhohliadova.demo_car.security.JwtTokenTool;
+import oleh.mazurokoleh.mazurok.demo_car.security.JwtConfigure;
+import oleh.mazurok.demo_car.security.JwtTokenTool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
