@@ -1,9 +1,9 @@
-package alla.verkhohliadova.demo_car.entity;
+package oleh.mazurok.demo_car.entity;
 
-import alla.verkhohliadova.demo_car.DemoCarApplication;
-import alla.verkhohliadova.demo_car.dto.request.CategoryRequest;
-import alla.verkhohliadova.demo_car.dto.response.CategoryResponse;
-import alla.verkhohliadova.demo_car.service.CategoryService;
+import oleh.mazurok.demo_car.DemoCarApplication;
+import oleh.mazurok.demo_car.dto.request.CategoryRequest;
+import oleh.mazurok.demo_car.dto.response.CategoryResponse;
+import oleh.mazurok.demo_car.service.CategoryService;
 import org.junit.Assert;
 import org.junit.Test;
 
