@@ -1,4 +1,4 @@
-package alla.verkhohliadova.demo_car.config;
+package oleh.mazurok.demo_car.config;
 
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletAutoConfiguration;
@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.nio.file.Paths;
 
-import static alla.verkhohliadova.demo_car.service.FileService.IMG_DIR;
+import static oleh.mazurok.demo_car.service.FileService.IMG_DIR;
 
 
 @Configuration
