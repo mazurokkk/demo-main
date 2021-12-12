@@ -1,12 +1,12 @@
-package alla.verkhohliadova.demo_car.controller;
+package oleh.mazurok.demo_car.controller;
 
-import alla.verkhohliadova.demo_car.dto.request.CategoryRequest;
-import alla.verkhohliadova.demo_car.dto.request.UserRequest;
-import alla.verkhohliadova.demo_car.dto.response.AuthenticationResponse;
-import alla.verkhohliadova.demo_car.dto.response.CategoryResponse;
-import alla.verkhohliadova.demo_car.dto.response.UserResponse;
-import alla.verkhohliadova.demo_car.entity.User;
-import alla.verkhohliadova.demo_car.service.UserService;
+import oleh.mazurok.demo_car.dto.request.CategoryRequest;
+import oleh.mazurok.demo_car.dto.request.UserRequest;
+import oleh.mazurok.demo_car.dto.response.AuthenticationResponse;
+import oleh.mazurok.demo_car.dto.response.CategoryResponse;
+import oleh.mazurok.demo_car.dto.response.UserResponse;
+import oleh.mazurok.demo_car.entity.User;
+import oleh.mazurok.demo_car.service.UserService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
