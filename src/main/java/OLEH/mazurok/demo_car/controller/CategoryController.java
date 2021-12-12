@@ -1,8 +1,8 @@
-package alla.verkhohliadova.demo_car.controller;
+package oleh.mazurok.demo_car.controller;
 
-import alla.verkhohliadova.demo_car.dto.request.CategoryRequest;
-import alla.verkhohliadova.demo_car.dto.response.CategoryResponse;
-import alla.verkhohliadova.demo_car.service.CategoryService;
+import oleh.mazurok.demo_car.dto.request.CategoryRequest;
+import oleh.mazurok.demo_car.dto.response.CategoryResponse;
+import oleh.mazurok.demo_car.service.CategoryService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
